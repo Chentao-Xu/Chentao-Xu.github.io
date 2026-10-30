@@ -30,18 +30,10 @@ a:hover { text-decoration: underline; }
   min-height: 72px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   border-bottom: 1px solid var(--line);
 }
 
-.wordmark {
-  color: var(--text);
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.wordmark:hover { text-decoration: none; }
 
 nav {
   display: flex;
@@ -169,6 +161,8 @@ footer {
 /* Additions to the approved minimal layout. */
 .portrait { position: relative; overflow: hidden; width: 180px; height: 220px; margin: 0 auto; }
 .portrait img { position: absolute; display: block; width: 180%; max-width: none; height: auto; left: -12%; top: -23%; }
+.hero > .portrait { grid-column: 2; grid-row: 1; }
+.hero > div:not(.portrait) { grid-column: 1; grid-row: 1; }
 .contact-row a { overflow-wrap: anywhere; }
 .contact-row .github { display: inline-block; margin-top: 10px; }
 nav a[aria-current="page"] { color: var(--text); }
@@ -190,7 +184,10 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .gallery img { width: auto; height: auto; max-width: 100%; max-height: 62vh; display: block; margin: 0 auto; }
 figcaption { margin-top: 8px; }
 @media (max-width: 680px) {
-  .portrait { margin: 0; width: 150px; height: 183px; }
+  .hero { display: flow-root; }
+  .hero > .portrait { float: right; margin: 0 0 16px 20px; width: 100px; height: 122px; }
+  .hero h1 { font-size: 32px; }
+  .hero .intro { font-size: 16px; }
   .albums { grid-template-columns: 1fr; }
   nav { gap: 18px; }
 }
