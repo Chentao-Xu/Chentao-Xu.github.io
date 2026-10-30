@@ -47,7 +47,7 @@ if (requested) {
       const previews = album.photos.slice(0, 3);
       const mosaic = el("div", "", "album-preview");
       mosaic.dataset.count = previews.length;
-      for (const item of previews) mosaic.append(photo(item));
+      for (const item of previews) mosaic.append(photo({...item, src: item.thumbnail || item.src}));
       link.append(mosaic);
       link.append(el("h3", album.title));
       link.append(el("p", album.photos.length + " photographs · View series →", "muted"));
