@@ -44,9 +44,13 @@ if (requested) {
     for (const album of albums.filter(item => item.year === year)) {
       const link = el("a", "", "album");
       link.href = "?album=" + encodeURIComponent(album.id);
-      const cover = album.cover || album.photos[0]?.src;
-      if (cover) link.append(photo({src: cover, alt: album.title}));
+      const previews = album.photos.slice(0, 3);
+      const mosaic = el("div", "", "album-preview");
+      mosaic.dataset.count = previews.length;
+      for (const item of previews) mosaic.append(photo(item));
+      link.append(mosaic);
       link.append(el("h3", album.title));
+      link.append(el("p", album.photos.length + " photographs · View series →", "muted"));
       if (album.location) link.append(el("p", album.location, "muted"));
       grid.append(link);
     }
